@@ -1,0 +1,35 @@
+
+<mat-card class="edit-board">
+    <div class="container">
+        <mat-card-title class="title">编辑“{{name}}”</mat-card-title>
+        <mat-card-content class="content">
+            <div *ngFor="let item of editData;index as i">
+                <mat-form-field style="width:100%;font-size:16px;" *ngIf="item.propertyName.istable==false">
+                <!-- <mat-form-field style="width:100%;font-size:16px;"> -->
+                    <textarea matInput placeholder="{{item.propertyName.name}}" rows="{{item.row}}" [(ngModel)]="item.value" (keyup.enter)="rowsAuto(i)"></textarea>
+                </mat-form-field>
+                <div class="item-table" *ngIf="item.propertyName.istable==true">
+                    <label style="color:rgb(169, 169, 169);margin-right:10px;">{{item.propertyName.name}}</label>
+                    <button (click)="addRow(i)" class="add-btn">添加行</button>
+                    <div class="tabel-wrapper">
+                        <table [class.active]="isActive">
+                            <tr *ngFor="let it of item.value;index as a">
+                                <td style="border:none;"><button (click)="addColumn(i,a)" class="add-btn">添加列</button></td>
+                                <td>
+                                    <input style="font-weight:700;font-size:16px;" [(ngModel)]="it.key" (focus)="goBlue()" (blur)="goGrey()" class="small-input"/>
+                                </td>
+                                <td *ngFor="let it1 of it.value"><input [(ngModel)]="it1.key" (focus)="goBlue()" (blur)="goGrey()" class="small-input"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+        <div class="button-row">
+            <button mat-raised-button color="primary" (click)="confirm($event)">确定</button>
+            <button mat-raised-button (click)="cancel()">取消</button>
+        </div>
+    </div>
+</mat-card>
+

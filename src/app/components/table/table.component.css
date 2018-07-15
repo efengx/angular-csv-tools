@@ -1,0 +1,70 @@
+.beSmall{
+    min-width:50px;
+    padding:0;
+    line-height:30px;
+}
+.total{
+    float:right;
+}
+.slideUp{
+    display:none;
+}
+
+.input-wrapper{
+    display:flex;
+    justify-content: space-between;
+    margin-bottom:30px;
+}
+/* 查询框 */
+.query-input{
+    height:26px;
+    padding:5px;
+    margin-right:10px;
+    border: 1px solid #dddee1;
+    border-radius: 4px;
+    color: #495060;
+    background-color: #fff;
+    vertical-align: middle;
+    transition: border .2s ease-in-out,box-shadow .2s ease-in-out;
+}
+.query-input:hover{
+    border-color:RGB(63,81,181);
+}
+.query-btn{
+    vertical-align: middle;
+}
+/* 上传文件按钮 */
+.sl-custom-file {
+    position: relative;
+    width:88px;
+    height:36px;
+    zoom: 1;
+    cursor: pointer;
+    overflow: hidden;
+    vertical-align: middle;
+}
+.btn-file{
+    position: absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+}
+.ui-input-file {
+    position: absolute;
+    display:block;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -ms-filter: "alpha(opacity=0)";
+}
+.icon-shangchuan{
+    margin-right:5px;
+    color:#fff;
+    font-size:15px;
+}
+
+

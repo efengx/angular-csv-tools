@@ -1,0 +1,27 @@
+<mat-card class="form-wrapper">
+    <mat-card-title class="title">欢迎登录</mat-card-title>
+    <ul [formGroup]="formModel">
+      <li>
+        <mat-form-field>
+          <input matInput placeholder="账户" required formControlName="username">
+          <mat-error *ngIf="formModel.hasError('required','username')">
+              帐户名是<strong>必填的</strong>
+          </mat-error>
+        </mat-form-field>
+      </li>
+      <li>
+        <mat-form-field>
+          <!-- 加了required就会有后面的* -->
+          <input matInput placeholder="密码" [type]="hide ? 'password' : 'text'" required formControlName="password">
+          <mat-icon matSuffix (click)="hide = !hide" class="eye">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+          <mat-error *ngIf="formModel.hasError('required','password')">
+              密码是<strong>必填的</strong>
+          </mat-error>
+        </mat-form-field>
+      </li>
+      <li>
+        <button mat-raised-button color="primary" (click)="login()">登录</button>
+      </li>
+    </ul>
+</mat-card>
+

@@ -1,0 +1,46 @@
+<mat-progress-bar mode="indeterminate" color="warn" *ngIf="isShowProgress" class="progress"></mat-progress-bar>
+
+<mat-sidenav-container class="sidenav-container">
+  <!-- 侧边导航条 -->
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
+    <mat-toolbar color="primary">menu</mat-toolbar>
+    <mat-nav-list>
+      <!-- 当前路由处于激活状态：routerLinkActive -->
+      <a mat-list-item [routerLink]="['/home/table',link.pkId,link.name]" *ngFor="let link of links"
+        routerLinkActive="active">
+        <i class="icon iconfont icon-aixin"></i>&nbsp;&nbsp;{{link.name}}
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- 右侧内容 -->
+  <mat-sidenav-content>
+    <!-- 顶部通栏 -->
+    <mat-toolbar color="primary" class="header">
+      <!-- 小屏幕时的扩展菜单按钮 -->
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>欢迎登录</span>
+      <!-- <div class="admin">
+        <span>admin<i class="icon iconfont icon--xialajiantou"></i></span>
+        <button mat-button>退出登录</button>
+      </div> -->
+      <!-- <a href="#" class="logout">退出登录</a> -->
+      <div>
+        <button mat-button [matMenuTriggerFor]="menu">admin
+          <i class="icon iconfont icon--xialajiantou"></i>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>退出登陆</button>
+        </mat-menu>
+      </div>
+    </mat-toolbar>
+
+    <!-- 主体内容 -->
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

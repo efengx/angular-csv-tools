@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+
+body{ margin: 0;padding:0;background-color:RGB(245,247,249); }
+a{text-decoration: none;}
+ul li{list-style: none;}
+input,button{outline: none;}
+
+/* 设置滚动条样式，仅仅webkit内核浏览器下有效 */
+::-webkit-scrollbar {
+    width:6px;
+    height:10px;
+}
+::-webkit-scrollbar-button    {
+    background-color:rgba(134, 131, 131, 0.5);
+}
+::-webkit-scrollbar-track     {
+    background:rgba(134, 131, 131, 0.5);
+}
+::-webkit-scrollbar-thumb{
+    background:RGB(160,160,160);
+}
+::-webkit-scrollbar-corner {
+    background:RGB(160,160,160);
+}
+::-webkit-scrollbar-resizer  {
+    background:rgba(134, 131, 131, 0.5);
+}
+
+  

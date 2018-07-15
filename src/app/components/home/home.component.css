@@ -1,0 +1,53 @@
+.progress{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+  box-shadow: 3px 0 6px rgba(0,0,0,.24);
+}
+
+
+/* 改变导航link的默认样式 */
+.mat-list-item:hover{
+  color:RGB(63,81,181,.5);
+  transition:all .3s;
+}
+.mat-nav-list .mat-list-item.mat-list-item-focus,
+.active{
+  color:#3f51b5;
+  background-color:rgba(134, 131, 131, 0.5);
+  border-right:3px solid #3f51b5;
+}
+
+/* 顶部通栏 */
+.header{
+  display:flex;
+  justify-content:space-between;
+}
+.admin{
+  position: relative;
+}
+.admin>button{
+  position: absolute;
+  left:0;
+  top:100%;
+  color:red;
+  background-color:yellow;
+}
+.logout{
+  color:#fff;
+}
+
+/* 主体内容 */
+.content{
+  padding:20px 30px;
+}

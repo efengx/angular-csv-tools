@@ -1,0 +1,67 @@
+
+<!-- 查询导入部分 -->
+<div class="input-wrapper">
+  <!-- 上传文件 -->
+  <div>
+      <div class="sl-custom-file">
+        <button mat-raised-button color="primary" class="btn-file">
+          <i class="icon iconfont icon-shangchuan"></i>导入
+        </button>
+        <input #fileInput type="file" (change)="addFile()" class="ui-input-file"/>
+      </div>
+      <div *ngIf="isUpdate" style="font-size:12px;">
+        <span>{{fileName}}</span>&nbsp;&nbsp;&nbsp;
+        <span>loading...</span>
+      </div>
+  </div>
+  <!-- 查询框 -->
+  <div>
+    <input type="text" placeholder="{{cName}}" class="query-input" [(ngModel)]="filter" (keyup.enter)="search()">
+    <button mat-raised-button color="primary" class="query-btn" (click)="search()">查询</button>
+  </div>
+</div>
+
+
+<!-- 表格 -->
+<div class="mat-elevation-z8">
+  <mat-table #myTable [dataSource]="dataSource" matSort aria-label="Elements">
+
+    <!-- 职业 Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>职业</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+    </ng-container>
+
+    <!-- 更新时间 Column -->
+    <ng-container matColumnDef="lastTime">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>更新时间/日期</mat-header-cell>
+      <mat-cell *matCellDef="let row" >{{ row.lastModifiedDate | date:'yyyy-MM-dd HH:mm:ss' }}</mat-cell>
+    </ng-container>
+
+    <!-- 创建时间 Column -->
+    <ng-container matColumnDef="createTime">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>创建时间/日期</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.createDate | date:'yyyy-MM-dd  HH:mm:ss'}}</mat-cell>
+    </ng-container>
+
+    <!-- 操作 Column -->
+    <ng-container matColumnDef="operate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>操作</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+          <button mat-raised-button color="primary" [class.beSmall]="true" [routerLink]="['/home/edit',id,row.pkId]">编辑</button>&nbsp;&nbsp;
+          <button mat-raised-button (click)="openDialog(row.pkId)" color="warn" [class.beSmall]="true">删除</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <!-- 分页器 -->
+  <mat-paginator *ngIf="dataSource.page != null" #paginator showFirstLastButtons
+                 [length]="dataSource.page.totalElements"
+                 [pageSize]="dataSource.page.size"
+                 [pageSizeOptions]="[10, 25, 50, 100]"
+                 (page)="onPage($event)">
+  </mat-paginator>
+</div>

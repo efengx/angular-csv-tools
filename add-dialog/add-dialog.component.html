@@ -1,0 +1,11 @@
+
+<div mat-dialog-content>
+  <p>请输入添加{{data.addName}}</p>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.addNumber">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.addNumber" cdkFocusInitial>是</button>
+  <button mat-button (click)="onNoClick()">否</button>
+</div>
