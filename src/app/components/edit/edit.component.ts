@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { CollegeDataService } from '../../service/college-data.service';
 import { Dialog } from '../../entity/dialog';
@@ -13,6 +13,7 @@ export class EditComponent implements OnInit {
   // 路由参数
   id: number;
   pkid: number;
+  cName: string;
 
   // 后台数据
   editData: any;
@@ -32,13 +33,15 @@ export class EditComponent implements OnInit {
     private routerInfo: ActivatedRoute,
     private snackBar: MatSnackBar,
     private college: CollegeDataService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) { }
 
   ngOnInit () {
     this.routerInfo.params.subscribe((params: Params) => {
       this.pkid = params['pkid'];
       this.id = params['id'];
+      this.cName = params['Cname'];
     });
     this.college.getEditData(this.pkid).subscribe(data => {
       if (data.propertyValues) {
@@ -132,9 +135,7 @@ export class EditComponent implements OnInit {
 
   // 回到首页
   goBack () {
-    setTimeout(() => {
-      window.history.back();
-    }, 500);
+    this.router.navigate([`home/table/${this.id}/${this.cName}`])
   }
 
   // 确认更改编辑信息

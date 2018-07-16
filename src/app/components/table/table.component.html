@@ -48,7 +48,7 @@
     <ng-container matColumnDef="operate">
       <mat-header-cell *matHeaderCellDef mat-sort-header>操作</mat-header-cell>
       <mat-cell *matCellDef="let row">
-          <button mat-raised-button color="primary" [class.beSmall]="true" [routerLink]="['/home/edit',id,row.pkId]">编辑</button>&nbsp;&nbsp;
+          <button mat-raised-button color="primary" [class.beSmall]="true" [routerLink]="['/home/edit',id,cName,row.pkId]">编辑</button>&nbsp;&nbsp;
           <button mat-raised-button (click)="openDialog(row.pkId)" color="warn" [class.beSmall]="true">删除</button>
       </mat-cell>
     </ng-container>
