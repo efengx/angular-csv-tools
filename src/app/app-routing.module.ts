@@ -20,7 +20,7 @@ const routes: Routes = [
         path: 'table/:pkid/:name', component: TableComponent
       },
       {
-        path: 'edit/:id/:pkid', component: EditComponent
+        path: 'edit/:id/:name/:pkid', component: EditComponent
       },
     ]
   },

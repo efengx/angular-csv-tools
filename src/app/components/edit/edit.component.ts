@@ -21,8 +21,8 @@ export class EditComponent implements OnInit {
   // 查询名
   name: String;
 
-
-  isActive: Boolean = false;
+  // 编辑框内原始值
+  oldEditValue: string;
 
   addData: Dialog = {
     addNumber: 0,
@@ -41,7 +41,7 @@ export class EditComponent implements OnInit {
     this.routerInfo.params.subscribe((params: Params) => {
       this.pkid = params['pkid'];
       this.id = params['id'];
-      this.cName = params['Cname'];
+      this.cName = params['name'];
     });
     this.college.getEditData(this.pkid).subscribe(data => {
       if (data.propertyValues) {
@@ -91,12 +91,7 @@ export class EditComponent implements OnInit {
   rowsAuto (index) {
     this.editData[index].row++;
   }
-  goBlue () {
-    this.isActive = true;
-  }
-  goGrey () {
-    this.isActive = false;
-  }
+
   // 转换编辑上传的数据的格式
   getFormDataFn () {
     const that = this;
@@ -135,7 +130,7 @@ export class EditComponent implements OnInit {
 
   // 回到首页
   goBack () {
-    this.router.navigate([`home/table/${this.id}/${this.cName}`])
+    this.router.navigate([`home/table/${this.id}/${this.cName}`]);
   }
 
   // 确认更改编辑信息
@@ -149,6 +144,11 @@ export class EditComponent implements OnInit {
             verticalPosition: 'top',
           });
           this.goBack();
+        } else {
+          this.snackBar.open('保存失败！', '', {
+            duration: 500,
+            verticalPosition: 'top',
+          });
         }
       },
       () => console.log('Observer got a complete notification')
@@ -158,5 +158,29 @@ export class EditComponent implements OnInit {
   // 取消
   cancel () {
     this.goBack();
+  }
+
+  // 自动保存
+  getoldEditValue (e) {
+    this.oldEditValue = e.target.value;
+  }
+  autoSave (e) {
+    // 用户改变了编辑框内的内容才保存数据
+    if (this.oldEditValue !== e.target.value) {
+      this.college.save(this.getFormDataFn()).subscribe(
+        x => console.log('Observer got a next value: ' + x),
+        err => {
+          if (err.error.text === 'success') {
+
+          } else {
+            this.snackBar.open('保存失败！', '', {
+              duration: 500,
+              verticalPosition: 'top',
+            });
+          }
+        },
+        () => console.log('Observer got a complete notification')
+      );
+    }
   }
 }
