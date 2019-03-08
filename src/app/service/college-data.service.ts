@@ -7,11 +7,11 @@ import { environment } from '../../environments/environment.prod';
 
 // 定义header
 const host = environment.production ? 'http://www.aldexam.com:9080' : 'http://192.168.1.40:9080';
+// const host = 'http://192.168.1.40:9080';
 // 定义请求头
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
   }),
 };
 

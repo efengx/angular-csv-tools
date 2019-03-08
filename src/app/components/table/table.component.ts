@@ -87,6 +87,7 @@ export class TableComponent implements OnInit {
   addRightFile () {
     const fi = this.fileInput.nativeElement;
     const fileToUpload = fi.files[0];
+    console.log(fileToUpload);
     this.fileName = fileToUpload.name;
     const input = new FormData();
     input.append('files', fileToUpload);

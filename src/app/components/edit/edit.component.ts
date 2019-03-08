@@ -44,6 +44,7 @@ export class EditComponent implements OnInit {
       this.cName = params['name'];
     });
     this.college.getEditData(this.pkid).subscribe(data => {
+      console.log(data);
       if (data.propertyValues) {
         const tmpData = data.propertyValues;
         const len = tmpData.length;
@@ -136,7 +137,7 @@ export class EditComponent implements OnInit {
   // 确认更改编辑信息
   confirm (e) {
     this.college.save(this.getFormDataFn()).subscribe(
-      x => console.log('Observer got a next value: ' + x),
+      x => console.log('next' + x),
       err => {
         if (err.error.text === 'success') {
           this.snackBar.open('编辑成功！', '', {
@@ -150,37 +151,20 @@ export class EditComponent implements OnInit {
             verticalPosition: 'top',
           });
         }
+        // if (err.error) {
+        //   console.log('失败');
+        //   this.snackBar.open('保存失败！', '', {
+        //     duration: 500,
+        //     verticalPosition: 'top',
+        //   });
+        // }
       },
-      () => console.log('Observer got a complete notification')
+      () => console.log('完成')
     );
   }
 
   // 取消
   cancel () {
     this.goBack();
-  }
-
-  // 自动保存
-  getoldEditValue (e) {
-    this.oldEditValue = e.target.value;
-  }
-  autoSave (e) {
-    // 用户改变了编辑框内的内容才保存数据
-    if (this.oldEditValue !== e.target.value) {
-      this.college.save(this.getFormDataFn()).subscribe(
-        x => console.log('Observer got a next value: ' + x),
-        err => {
-          if (err.error.text === 'success') {
-
-          } else {
-            this.snackBar.open('保存失败！', '', {
-              duration: 500,
-              verticalPosition: 'top',
-            });
-          }
-        },
-        () => console.log('Observer got a complete notification')
-      );
-    }
   }
 }

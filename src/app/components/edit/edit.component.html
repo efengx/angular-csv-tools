@@ -6,7 +6,7 @@
             <div *ngFor="let item of editData;index as i">
                 <mat-form-field style="width:100%;font-size:16px;" *ngIf="item.propertyName.istable==false">
                 <!-- <mat-form-field style="width:100%;font-size:16px;"> -->
-                    <textarea matInput placeholder="{{item.propertyName.name}}" rows="{{item.row}}" [(ngModel)]="item.value" (keyup.enter)="rowsAuto(i)" (blur)="autoSave($event)" (focus)="getoldEditValue($event)"></textarea>
+                    <textarea matInput placeholder="{{item.propertyName.name}}" rows="{{item.row}}" [(ngModel)]="item.value" (keyup.enter)="rowsAuto(i)"></textarea>
                 </mat-form-field>
                 <div class="item-table" *ngIf="item.propertyName.istable==true">
                     <label style="color:rgb(169, 169, 169);margin-right:10px;">{{item.propertyName.name}}</label>
@@ -16,9 +16,9 @@
                             <tr *ngFor="let it of item.value;index as a">
                                 <td style="border:none;"><button (click)="addColumn(i,a)" class="add-btn">添加列</button></td>
                                 <td>
-                                    <input style="font-weight:700;font-size:16px;" [(ngModel)]="it.key" (blur)="autoSave($event)" (focus)="getoldEditValue($event)" class="small-input"/>
+                                    <input style="font-weight:700;font-size:16px;" [(ngModel)]="it.key" class="small-input"/>
                                 </td>
-                                <td *ngFor="let it1 of it.value"><input [(ngModel)]="it1.key" (blur)="autoSave($event)" (focus)="getoldEditValue($event)" class="small-input"/>
+                                <td *ngFor="let it1 of it.value"><input [(ngModel)]="it1.key" class="small-input"/>
                                 </td>
                             </tr>
                         </table>

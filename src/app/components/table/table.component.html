@@ -2,7 +2,7 @@
 <!-- 查询导入部分 -->
 <div class="input-wrapper">
   <!-- 上传文件 -->
-  <div>
+  <!-- <div>
       <div class="sl-custom-file">
         <button mat-raised-button color="primary" class="btn-file">
           <i class="icon iconfont icon-shangchuan"></i>导入
@@ -13,9 +13,9 @@
         <span>{{fileName}}</span>&nbsp;&nbsp;&nbsp;
         <span>loading...</span>
       </div>
-  </div>
+  </div> -->
   <!-- 查询框 -->
-  <div>
+  <div class="query-wrapper">
     <input type="text" placeholder="{{cName}}" class="query-input" [(ngModel)]="filter" (keyup.enter)="search()">
     <button mat-raised-button color="primary" class="query-btn" (click)="search()">查询</button>
   </div>
